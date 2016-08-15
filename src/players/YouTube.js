@@ -77,6 +77,9 @@ export default class YouTube extends Base {
         events: {
           onReady: () => {
             this.loadingSDK = false
+            if (this.props.onReady) {
+              this.props.onReady.forEach((func) => { this[func].call(this) })
+            }
             this.onReady()
           },
           onStateChange: this.onStateChange,
@@ -110,6 +113,10 @@ export default class YouTube extends Base {
   stop () {
     if (!this.isReady || !this.player.stopVideo) return
     this.player.stopVideo()
+  }
+  mute () {
+    if (!this.player.mute) return
+    this.player.mute()
   }
   seekTo (fraction) {
     super.seekTo(fraction)
