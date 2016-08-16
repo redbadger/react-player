@@ -84,7 +84,7 @@ export default class YouTube extends Base {
           onReady: () => {
             this.loadingSDK = false
             if (this.props.onReady) {
-              this.props.onReady.forEach((func) => { this[func].call(this) })
+              this.props.onReady.forEach((func) => { func(this) })
             }
             this.onReady()
           },
