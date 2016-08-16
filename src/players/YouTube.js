@@ -57,6 +57,12 @@ export default class YouTube extends Base {
       })
       return
     }
+
+    let playerVars = this.props.youtubeConfig ? this.props.youtubeConfig.playerVars : {};
+    if (this.props.loop) {
+      playerVars = { ...playerVars, loop: 1, playlist: id }
+    }
+
     if (this.loadingSDK) {
       this.loadOnReady = url
       return
@@ -70,7 +76,7 @@ export default class YouTube extends Base {
         playerVars: {
           ...DEFAULT_PLAYER_VARS,
           controls: this.props.controls ? 1 : 0,
-          ...this.props.youtubeConfig.playerVars,
+          ...playerVars,
           start: parseStartTime(url),
           origin: window.location.origin
         },
