@@ -46,7 +46,7 @@ export default class Base extends Component {
       setTimeout(() => { this.seekOnPlay = null }, SEEK_ON_PLAY_EXPIRY)
     }
   }
-  onPlay = () => {
+  onPlay() {
     if (this.startOnPlay) {
       this.setVolume(this.props.volume)
       this.props.onStart()
@@ -62,7 +62,7 @@ export default class Base extends Component {
       this.durationOnPlay = false
     }
   }
-  onReady = () => {
+  onReady() {
     this.isReady = true
     if (this.props.playing || this.preloading) {
       this.preloading = false

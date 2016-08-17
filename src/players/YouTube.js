@@ -25,6 +25,10 @@ export default class YouTube extends Base {
   static canPlay (url) {
     return MATCH_URL.test(url)
   }
+  isReady = false
+  startOnPlay = true
+  durationOnPlay = false
+  seekOnPlay = null
   playerId = PLAYER_ID + '-' + playerIdCount++
   componentDidMount () {
     if (!this.props.url && this.props.youtubeConfig.preload) {
